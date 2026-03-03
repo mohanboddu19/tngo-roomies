@@ -550,11 +550,259 @@
   .q-toast.tgreen  { background: var(--accent3); color: #000; }
   .q-toast.tpurple { background: var(--accent4); color: #fff; }
   .q-toast.torange { background: var(--accent1); color: #fff; }
+
+  /* ===== NAME SELECTION MODAL ===== */
+  .name-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .name-modal {
+    background: var(--card);
+    border: 1px solid rgba(124,106,247,0.35);
+    border-radius: 24px;
+    padding: 36px 28px;
+    max-width: 360px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 60px rgba(124,106,247,0.2);
+  }
+
+  .name-modal h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .name-modal p {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 28px;
+  }
+
+  .name-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .name-btn {
+    background: var(--card2);
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 10px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .name-btn:hover {
+    border-color: var(--accent4);
+    background: rgba(124,106,247,0.1);
+    transform: translateY(-2px);
+  }
+
+  .name-btn.selected {
+    border-color: var(--accent4);
+    background: rgba(124,106,247,0.18);
+    color: var(--accent4);
+    box-shadow: 0 0 20px rgba(124,106,247,0.2);
+  }
+
+  .name-modal-footer {
+    margin-top: 20px;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  .current-user-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(124,106,247,0.12);
+    border: 1px solid rgba(124,106,247,0.25);
+    border-radius: 999px;
+    padding: 4px 14px;
+    font-size: 0.75rem;
+    color: var(--accent4);
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
+  .current-user-badge:hover { background: rgba(124,106,247,0.2); }
+
+  .btn-q-done:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+
+  
+  .name-btn.guest-btn {
+    grid-column: 1 / -1;
+    background: rgba(255,255,255,0.03);
+    border-color: rgba(255,255,255,0.08);
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 400;
+    padding: 10px;
+  }
+  .name-btn.guest-btn:hover {
+    border-color: rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.05);
+    color: var(--text);
+    transform: none;
+  }
+
+  /* ===== PASSCODE MODAL ===== */
+  .passcode-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(10px);
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .passcode-modal {
+    background: var(--card);
+    border: 1px solid rgba(124,106,247,0.35);
+    border-radius: 24px;
+    padding: 36px 28px;
+    max-width: 320px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 60px rgba(124,106,247,0.2);
+  }
+
+  .passcode-modal h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .passcode-modal p {
+    color: var(--muted);
+    font-size: 0.82rem;
+    margin-bottom: 24px;
+  }
+
+  .passcode-dots {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .passcode-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid var(--muted);
+    background: transparent;
+    transition: all 0.2s;
+  }
+
+  .passcode-dot.filled {
+    background: var(--accent4);
+    border-color: var(--accent4);
+    box-shadow: 0 0 10px rgba(124,106,247,0.5);
+  }
+
+  .passcode-dot.error {
+    background: var(--accent1);
+    border-color: var(--accent1);
+    animation: shake 0.3s ease;
+  }
+
+  .passcode-keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    max-width: 260px;
+    margin: 0 auto;
+  }
+
+  .passcode-key {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding: 18px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .passcode-key:hover { background: rgba(124,106,247,0.15); border-color: var(--accent4); }
+  .passcode-key:active { transform: scale(0.94); }
+  .passcode-key.key-del { font-size: 1rem; color: var(--muted); }
+  .passcode-key.key-empty { background: transparent; border: none; cursor: default; }
+
+  .passcode-guest {
+    margin-top: 18px;
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .passcode-guest:hover { color: var(--text); }
 </style>
 </head>
 <body>
 
 <!-- PAGE HEADER -->
+
+<!-- Passcode Modal -->
+<div class="passcode-modal-overlay" id="passcodeModal">
+  <div class="passcode-modal">
+    <h2>🏠 TNGO Roomies</h2>
+    <p>Enter passcode to continue</p>
+    <div class="passcode-dots" id="passcodeDots">
+      <div class="passcode-dot" id="dot0"></div>
+      <div class="passcode-dot" id="dot1"></div>
+      <div class="passcode-dot" id="dot2"></div>
+      <div class="passcode-dot" id="dot3"></div>
+    </div>
+    <div class="passcode-keypad">
+      <button class="passcode-key" onclick="passcodeKey('1')">1</button>
+      <button class="passcode-key" onclick="passcodeKey('2')">2</button>
+      <button class="passcode-key" onclick="passcodeKey('3')">3</button>
+      <button class="passcode-key" onclick="passcodeKey('4')">4</button>
+      <button class="passcode-key" onclick="passcodeKey('5')">5</button>
+      <button class="passcode-key" onclick="passcodeKey('6')">6</button>
+      <button class="passcode-key" onclick="passcodeKey('7')">7</button>
+      <button class="passcode-key" onclick="passcodeKey('8')">8</button>
+      <button class="passcode-key" onclick="passcodeKey('9')">9</button>
+      <button class="passcode-key key-empty" disabled></button>
+      <button class="passcode-key" onclick="passcodeKey('0')">0</button>
+      <button class="passcode-key key-del" onclick="passcodeDelete()">⌫</button>
+    </div>
+
+  </div>
+</div>
+
 <div class="page-header">
   <h1>🏠 TNGO Roomies</h1>
   <p>6 Members · Cooking Schedule & Turn Tracker</p>
@@ -603,6 +851,7 @@
 <!-- ===== TURN TRACKER TAB ===== -->
 <div class="tab-panel" id="panel-tracker">
   <div class="queue-section">
+    <div style="text-align:center;margin-bottom:8px"><span class="current-user-badge" id="currentUserBadge" onclick="showNameModal()">👤 <span id="currentUserName">...</span></span></div>
     <div style="text-align:center;margin-bottom:10px"><span id="syncStatus" style="font-size:0.75rem;letter-spacing:1px;color:#a7a9be">⟳ Connecting...</span></div>
 
     <div class="q-current-card">
@@ -622,10 +871,24 @@
     <div id="qHistoryWrap" style="display:none">
       <div class="q-history-title">📋 Completion History</div>
       <table class="q-history-table">
-        <thead><tr><th>CYCLE</th><th>PERSON</th><th>COMPLETED AT</th><th>LAST UPDATED</th></tr></thead>
+        <thead><tr><th>CYCLE</th><th>PERSON</th><th>ACTION BY</th><th>COMPLETED ON</th><th>LAST UPDATED</th></tr></thead>
         <tbody id="qHistoryBody"></tbody>
       </table>
     </div>
+  </div>
+</div>
+
+
+
+</div>
+
+<!-- Name Selection Modal -->
+<div class="name-modal-overlay" id="nameModal">
+  <div class="name-modal">
+    <h2>🏠 Who are you?</h2>
+    <p>Select your name to personalize the app. This is saved on your device.</p>
+    <div class="name-grid" id="nameGrid"></div>
+    <div class="name-modal-footer">You can change this anytime by tapping your name at the top.</div>
   </div>
 </div>
 
@@ -647,6 +910,188 @@
     // Show today's duty only on schedule tab
     document.getElementById('todayHighlight').style.display = name === 'schedule' ? 'flex' : 'none';
   }
+
+
+  /* =========================================================
+     PASSCODE LOCK
+  ========================================================= */
+  const MEMBER_PASSCODE = '2025';
+  let passcodeEntry = '';
+  let passcodeVerified = localStorage.getItem('tngo_verified') === '1'; // temp fallback until Firebase loads
+
+  function initPasscode() {
+    // Always hide passcode on init — shown after name selection
+    document.getElementById('passcodeModal').style.display = 'none';
+  }
+
+  function passcodeKey(digit) {
+    if (passcodeEntry.length >= 4) return;
+    passcodeEntry += digit;
+    updateDots();
+    if (passcodeEntry.length === 4) {
+      setTimeout(checkPasscode, 100);
+    }
+  }
+
+  function passcodeDelete() {
+    passcodeEntry = passcodeEntry.slice(0, -1);
+    updateDots();
+  }
+
+  function updateDots(error = false) {
+    for (let i = 0; i < 4; i++) {
+      const dot = document.getElementById('dot' + i);
+      dot.className = 'passcode-dot';
+      if (error) dot.classList.add('error');
+      else if (i < passcodeEntry.length) dot.classList.add('filled');
+    }
+  }
+
+  let pendingUser = null; // name selected, waiting for passcode
+
+  function checkPasscode() {
+    if (passcodeEntry === MEMBER_PASSCODE) {
+      localStorage.setItem('tngo_verified', '1'); // remember permanently
+      passcodeVerified = true;
+      // Save to Firebase so it survives cache clear
+      if (window._db && pendingUser) {
+        window._db.collection('devices').doc(DEVICE_ID).set({ verified: true, name: pendingUser, updatedAt: new Date().toISOString() }, { merge: true }).catch(e => console.error(e));
+      }
+      passcodeEntry = '';
+      updateDots();
+      document.getElementById('passcodeModal').style.display = 'none';
+      if (pendingUser) {
+        selectUser(pendingUser);
+        pendingUser = null;
+      }
+    } else {
+      updateDots(true);
+      passcodeEntry = '';
+      setTimeout(() => updateDots(), 600);
+      qToast('❌ Wrong passcode', 'torange');
+    }
+  }
+
+  initPasscode();
+
+  /* =========================================================
+     USER IDENTITY — locked profile + 5-tap title unlock
+  ========================================================= */
+  const qPeopleAll  = ['Sahith','Sriman','Mohan','Vamsi','Deepak','Baggu','Guest'];
+  let currentUser   = null;
+  let adminUnlocked = false; // unlocked by 5 taps on title
+
+  // Generate a unique device ID
+  function getDeviceId() {
+    let id = localStorage.getItem('tngo_device_id');
+    if (!id) {
+      id = 'dev_' + Math.random().toString(36).substr(2, 12) + '_' + Date.now();
+      localStorage.setItem('tngo_device_id', id);
+    }
+    return id;
+  }
+  const DEVICE_ID = getDeviceId();
+
+  // Load identity and verification from Firebase
+  async function loadIdentity() {
+    if (!window._db) {
+      const cached = localStorage.getItem('tngo_user');
+      if (cached) { applyUser(cached); } else { showNameModal(); }
+      return;
+    }
+    try {
+      const doc = await window._db.collection('devices').doc(DEVICE_ID).get();
+      if (doc.exists && doc.data().name && doc.data().name !== 'Guest') {
+        // Device is known — restore verification + profile (never restore Guest)
+        if (doc.data().verified) {
+          localStorage.setItem('tngo_verified', '1');
+          passcodeVerified = true;
+        }
+        applyUser(doc.data().name);
+        localStorage.setItem('tngo_user', doc.data().name);
+      } else {
+        // New device — check localStorage fallback (ignore Guest)
+        const cached = localStorage.getItem('tngo_user');
+        if (cached && cached !== 'Guest') { applyUser(cached); } else { showNameModal(); }
+      }
+    } catch(e) {
+      const cached = localStorage.getItem('tngo_user');
+      if (cached && cached !== 'Guest') { applyUser(cached); } else { showNameModal(); }
+    }
+  }
+
+  function applyUser(name) {
+    currentUser = name;
+    document.getElementById('currentUserName').textContent = name;
+    document.getElementById('nameModal').style.display = 'none';
+    document.getElementById('currentUserBadge').style.cursor = 'default';
+    updateDoneButton();
+  }
+
+  function populateNameGrid() {
+    const grid = document.getElementById('nameGrid');
+    grid.innerHTML = '';
+    qPeopleAll.forEach(name => {
+      const isGuest = name === 'Guest';
+      const btn = document.createElement('button');
+      btn.className = 'name-btn' + (name === currentUser ? ' selected' : '') + (isGuest ? ' guest-btn' : '');
+      btn.textContent = isGuest ? '👁 View Only (Guest)' : name;
+      btn.onclick = () => {
+        if (name === 'Guest') { selectUser(name); }
+        else { pendingUser = name; passcodeEntry = ''; updateDots(); document.getElementById('passcodeModal').style.display = 'flex'; }
+      };
+      grid.appendChild(btn);
+    });
+  }
+
+  function showNameModal() {
+    populateNameGrid();
+    document.getElementById('nameModal').style.display = 'flex';
+  }
+
+  // Badge is non-clickable — switching is via 5-tap title
+  document.getElementById('currentUserBadge').style.pointerEvents = 'none';
+
+  // Populate grid immediately
+  populateNameGrid();
+
+  async function selectUser(name) {
+    currentUser = name;
+    document.getElementById('nameModal').style.display = 'none';
+    document.getElementById('currentUserName').textContent = name;
+    document.getElementById('currentUserBadge').style.cursor = 'default';
+    adminUnlocked = false;
+    updateDoneButton();
+    if (name === 'Guest') return; // Never save Guest to Firebase or localStorage
+    localStorage.setItem('tngo_user', name);
+    if (window._db) {
+      try {
+        await window._db.collection('devices').doc(DEVICE_ID).set({
+          name: name, verified: passcodeVerified, updatedAt: new Date().toISOString()
+        });
+      } catch(e) { console.error('Failed to save identity', e); }
+    }
+  }
+
+  // ---- 5-tap on title to unlock profile switching ----
+  (function() {
+    const title = document.querySelector('.page-header h1');
+    let tapCount = 0;
+    let tapTimer = null;
+    title.addEventListener('click', () => {
+      tapCount++;
+      if (tapTimer) clearTimeout(tapTimer);
+      tapTimer = setTimeout(() => { tapCount = 0; }, 1500);
+      if (tapCount === 5) {
+        tapCount = 0;
+        clearTimeout(tapTimer);
+        adminUnlocked = true;
+        populateNameGrid();
+        document.getElementById('nameModal').style.display = 'flex';
+        qToast('🔓 Profile switching unlocked', 'tpurple');
+      }
+    });
+  })();
 
   /* =========================================================
      SCHEDULE
@@ -825,8 +1270,19 @@
     document.getElementById('qUndoBtn').disabled = false;
   }
 
+  function canUndo() {
+    if (!qUndoStack.length || !qHistory.length) return false;
+    // Can only undo if the very last history entry was performed by currentUser
+    const lastEntry = qHistory[qHistory.length - 1];
+    return lastEntry.performedBy === currentUser;
+  }
+
   function qUndo() {
     if (!qUndoStack.length) return;
+    if (!canUndo()) {
+      qToast('⛔ Undo blocked — newer entries exist from others', 'torange');
+      return;
+    }
     const prev = qUndoStack.pop();
     qQueue          = JSON.parse(JSON.stringify(prev.queue));
     qDoneList       = JSON.parse(JSON.stringify(prev.doneList));
@@ -906,7 +1362,8 @@
       }
 
       const lastUpdated = h.lastUpdatedAt ? `<span class="qh-date">${h.lastUpdatedAt}</span>` : `<span class="qh-date" style="color:var(--muted);font-style:italic">—</span>`;
-      tr.innerHTML = `<td class="qh-cycle">${h.cycle}</td><td class="qh-name">${nameCell}</td><td>${dateCell}</td><td>${h.skipped ? '' : lastUpdated}</td>`;
+      const actionBy = h.performedBy ? `<span style="font-size:0.7rem;color:var(--accent4)">${h.performedBy}</span>` : `<span style="font-size:0.7rem;color:var(--muted)">—</span>`;
+      tr.innerHTML = `<td class="qh-cycle">${h.cycle}</td><td class="qh-name">${nameCell}</td><td>${actionBy}</td><td>${dateCell}</td><td>${h.skipped ? '' : lastUpdated}</td>`;
       tbody.appendChild(tr);
     });
   }
@@ -942,7 +1399,36 @@
     qToast('📅 Date updated', 'tgreen');
   }
 
-  function qRender() { qUpdateCard(); qRenderList(); qRenderHistory(); }
+  function qRender() { qUpdateCard(); qRenderList(); qRenderHistory(); updateDoneButton(); }
+
+  function updateDoneButton() {
+    const doneBtn = document.querySelector('.btn-q-done');
+    const skipBtn = document.querySelector('.btn-q-skip');
+    const undoBtn = document.getElementById('qUndoBtn');
+    if (!doneBtn) return;
+
+    const isGuest  = currentUser === 'Guest';
+    const currentTurn = qQueue.length ? qQueue[0].name : null;
+    const isMyTurn = currentUser === currentTurn;
+
+    if (isGuest) {
+      // Guest — hide all buttons
+      doneBtn.style.display = 'none';
+      skipBtn.style.display = 'none';
+      undoBtn.style.display = 'none';
+      return;
+    }
+
+    // All members — Done, Skip, Undo (undo blocked if last entry not by them)
+    doneBtn.style.display = '';
+    skipBtn.style.display = '';
+    undoBtn.style.display = '';
+    doneBtn.disabled = false;
+    doneBtn.title = '';
+    const undoAllowed = canUndo();
+    undoBtn.disabled = !undoAllowed;
+    undoBtn.title = undoAllowed ? '' : 'Undo blocked — newer entries exist from others';
+  }
 
   // ---- Firebase save ----
   async function saveToFirebase() {
@@ -1012,7 +1498,7 @@
 
     qLastDone[cur.idx] = str;
     qDoneList.push(cur);
-    qHistory.push({ cycle: qCycle, name: cur.name, completedAt: str, isRetry: cur.isRetry, skipped: false, lastUpdatedAt: qFmtTimestamp(new Date()) });
+    qHistory.push({ cycle: qCycle, name: cur.name, completedAt: str, isRetry: cur.isRetry, skipped: false, lastUpdatedAt: qFmtTimestamp(new Date()), performedBy: currentUser || 'Unknown' });
 
     // Count unique people done this cycle
     const uniqueDone = new Set(qDoneList.map(d => d.idx));
@@ -1050,7 +1536,7 @@
     if (!qQueue.length) return;
     qSave();
     const s = qQueue.shift();
-    qHistory.push({ cycle: qCycle, name: s.name, completedAt: null, isRetry: s.isRetry, skipped: true });
+    qHistory.push({ cycle: qCycle, name: s.name, completedAt: null, isRetry: s.isRetry, skipped: true, performedBy: currentUser || 'Unknown' });
 
     // Add to pending set
     pendingSkipped.add(s.idx);
@@ -1140,6 +1626,7 @@
           });
         }
         qIsLoaded = true;
+        loadIdentity();
       }, (err) => {
         setSyncStatus('✗ Sync failed', '#ff6b6b');
         qQueue = qFreshQueue();
