@@ -622,7 +622,7 @@
     <div id="qHistoryWrap" style="display:none">
       <div class="q-history-title">📋 Completion History</div>
       <table class="q-history-table">
-        <thead><tr><th>CYCLE</th><th>PERSON</th><th>COMPLETED AT</th></tr></thead>
+        <thead><tr><th>CYCLE</th><th>PERSON</th><th>COMPLETED AT</th><th>LAST UPDATED</th></tr></thead>
         <tbody id="qHistoryBody"></tbody>
       </table>
     </div>
@@ -798,6 +798,11 @@
     return d.toLocaleDateString([], {month:'short', day:'numeric', year:'numeric'});
   }
 
+  function qFmtTimestamp(d) {
+    return d.toLocaleDateString([], {month:'short', day:'numeric', year:'numeric'})
+      + ' ' + d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', hour12: false});
+  }
+
   function qToast(msg, type='tgreen') {
     const t = document.getElementById('qToast');
     t.textContent = msg;
@@ -900,7 +905,8 @@
           </span>`;
       }
 
-      tr.innerHTML = `<td class="qh-cycle">${h.cycle}</td><td class="qh-name">${nameCell}</td><td>${dateCell}</td>`;
+      const lastUpdated = h.lastUpdatedAt ? `<span class="qh-date">${h.lastUpdatedAt}</span>` : `<span class="qh-date" style="color:var(--muted);font-style:italic">—</span>`;
+      tr.innerHTML = `<td class="qh-cycle">${h.cycle}</td><td class="qh-name">${nameCell}</td><td>${dateCell}</td><td>${h.skipped ? '' : lastUpdated}</td>`;
       tbody.appendChild(tr);
     });
   }
@@ -923,6 +929,7 @@
     const d = new Date(value + 'T00:00:00');
     const formatted = d.toLocaleDateString([], {month:'short', day:'numeric', year:'numeric'});
     qHistory[idx].completedAt = formatted;
+    qHistory[idx].lastUpdatedAt = qFmtTimestamp(new Date());
     // Also update lastDone if this is the most recent entry for this person
     const name = qHistory[idx].name;
     const personIdx = qPeople.indexOf(name);
@@ -1005,7 +1012,7 @@
 
     qLastDone[cur.idx] = str;
     qDoneList.push(cur);
-    qHistory.push({ cycle: qCycle, name: cur.name, completedAt: str, isRetry: cur.isRetry, skipped: false });
+    qHistory.push({ cycle: qCycle, name: cur.name, completedAt: str, isRetry: cur.isRetry, skipped: false, lastUpdatedAt: qFmtTimestamp(new Date()) });
 
     // Count unique people done this cycle
     const uniqueDone = new Set(qDoneList.map(d => d.idx));
